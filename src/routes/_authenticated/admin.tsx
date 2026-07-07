@@ -137,7 +137,7 @@ function LessonsAdmin() {
       xp_reward: Number(form.xp_reward),
       order_index: Number(form.order_index),
       published: form.published,
-      content: { intro: form.intro, quiz },
+      content: { intro: form.intro, quiz } as never,
     };
     const res = editId
       ? await supabase.from("lessons").update(payload).eq("id", editId)

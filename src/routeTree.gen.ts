@@ -16,6 +16,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedVocabularyRouteImport } from './routes/_authenticated/vocabulary'
 import { Route as AuthenticatedLeaderboardRouteImport } from './routes/_authenticated/leaderboard'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAchievementsRouteImport } from './routes/_authenticated/achievements'
 import { Route as AuthenticatedLessonLessonIdRouteImport } from './routes/_authenticated/lesson.$lessonId'
 
@@ -54,6 +55,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAchievementsRoute =
   AuthenticatedAchievementsRouteImport.update({
     id: '/achievements',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/learn': typeof LearnRoute
   '/achievements': typeof AuthenticatedAchievementsRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/vocabulary': typeof AuthenticatedVocabularyRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/learn': typeof LearnRoute
   '/achievements': typeof AuthenticatedAchievementsRoute
+  '/admin': typeof AuthenticatedAdminRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/vocabulary': typeof AuthenticatedVocabularyRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/learn': typeof LearnRoute
   '/_authenticated/achievements': typeof AuthenticatedAchievementsRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/_authenticated/vocabulary': typeof AuthenticatedVocabularyRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/learn'
     | '/achievements'
+    | '/admin'
     | '/dashboard'
     | '/leaderboard'
     | '/vocabulary'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/learn'
     | '/achievements'
+    | '/admin'
     | '/dashboard'
     | '/leaderboard'
     | '/vocabulary'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/learn'
     | '/_authenticated/achievements'
+    | '/_authenticated/admin'
     | '/_authenticated/dashboard'
     | '/_authenticated/leaderboard'
     | '/_authenticated/vocabulary'
@@ -191,6 +203,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/achievements': {
       id: '/_authenticated/achievements'
       path: '/achievements'
@@ -210,6 +229,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAchievementsRoute: typeof AuthenticatedAchievementsRoute
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedLeaderboardRoute: typeof AuthenticatedLeaderboardRoute
   AuthenticatedVocabularyRoute: typeof AuthenticatedVocabularyRoute
@@ -218,6 +238,7 @@ interface AuthenticatedRouteRouteChildren {
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAchievementsRoute: AuthenticatedAchievementsRoute,
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedLeaderboardRoute: AuthenticatedLeaderboardRoute,
   AuthenticatedVocabularyRoute: AuthenticatedVocabularyRoute,
