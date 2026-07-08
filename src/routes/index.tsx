@@ -42,6 +42,7 @@ function Landing() {
     <div className="min-h-screen">
       <SiteHeader />
 
+      <main id="main-content">
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 md:grid-cols-2 md:py-20">
