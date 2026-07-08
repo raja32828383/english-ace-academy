@@ -13,6 +13,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import heroImg from "@/assets/hero.jpg";
@@ -41,6 +42,7 @@ function Landing() {
     <div className="min-h-screen">
       <SiteHeader />
 
+      <main id="main-content">
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 md:grid-cols-2 md:py-20">
@@ -147,16 +149,9 @@ function Landing() {
           </Button>
         </Card>
       </section>
+      </main>
 
-      <footer className="border-t py-8">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 text-sm text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} TwoMoon Academy. Belajar bahasa Inggris, made joyful.</p>
-          <div className="flex gap-4 font-semibold">
-            <Link to="/learn" className="hover:text-foreground">Lessons</Link>
-            <Link to="/auth" className="hover:text-foreground">Sign in</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

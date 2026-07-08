@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth";
 import { vocabularyQuery, type Vocabulary } from "@/lib/data";
 import { computeNextReview, REVIEW_GRADES, type ReviewState } from "@/lib/srs";
@@ -109,12 +110,15 @@ function VocabularyPage() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <div className="mx-auto max-w-xl px-4 py-8">
+      <main id="main-content" className="mx-auto max-w-xl px-4 py-8">
         <h1 className="font-display text-3xl font-extrabold">Vocabulary flashcards</h1>
         <p className="mt-1 text-muted-foreground">Spaced repetition remembers what you struggle with.</p>
 
         {isLoading ? (
-          <p className="mt-10 text-center text-muted-foreground">Loading…</p>
+          <div className="mt-6 space-y-4" aria-hidden="true">
+            <Skeleton className="h-2 rounded-full" />
+            <Skeleton className="h-64 rounded-2xl" />
+          </div>
         ) : dueCards.length === 0 ? (
           <Card className="mt-8 p-10 text-center">
             <CheckCircle2 className="mx-auto h-12 w-12 text-success" />
@@ -171,7 +175,7 @@ function VocabularyPage() {
             )}
           </>
         )}
-      </div>
+      </main>
     </div>
   );
 }

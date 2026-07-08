@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Flame, Medal, Star } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { EmptyState } from "@/components/ui/empty-state";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { leaderboardQuery } from "@/lib/data";
 import { useAuth } from "@/lib/auth";
@@ -22,12 +24,16 @@ function LeaderboardPage() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <div className="mx-auto max-w-2xl px-4 py-8">
+      <main id="main-content" className="mx-auto max-w-2xl px-4 py-8">
         <h1 className="font-display text-3xl font-extrabold">Leaderboard</h1>
         <p className="mt-1 text-muted-foreground">Top learners by XP. Keep grinding to climb!</p>
 
         {isLoading ? (
-          <p className="mt-10 text-center text-muted-foreground">Loading…</p>
+          <div className="mt-6 space-y-2" aria-hidden="true">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <Skeleton key={i} className="h-16 rounded-xl" />
+            ))}
+          </div>
         ) : (
           <div className="mt-6 space-y-2">
             {rows.map((row, i) => {
@@ -61,11 +67,16 @@ function LeaderboardPage() {
               );
             })}
             {rows.length === 0 && (
-              <p className="mt-10 text-center text-muted-foreground">No learners yet. Be the first!</p>
+              <EmptyState
+                className="mt-6"
+                icon={<Medal className="h-6 w-6" />}
+                title="No learners yet"
+                description="Complete lessons to earn XP and be the first on the leaderboard!"
+              />
             )}
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }
