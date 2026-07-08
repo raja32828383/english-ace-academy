@@ -174,7 +174,7 @@ function VocabularyPage() {
             )}
           </>
         )}
-      </div>
+      </main>
     </div>
   );
 }
