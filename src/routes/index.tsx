@@ -150,7 +150,7 @@ function Landing() {
 
       <footer className="border-t py-8">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 text-sm text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} FluentID. Belajar bahasa Inggris, made joyful.</p>
+          <p>© {new Date().getFullYear()} TwoMoon Academy. Belajar bahasa Inggris, made joyful.</p>
           <div className="flex gap-4 font-semibold">
             <Link to="/learn" className="hover:text-foreground">Lessons</Link>
             <Link to="/auth" className="hover:text-foreground">Sign in</Link>
