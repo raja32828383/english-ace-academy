@@ -137,7 +137,7 @@ function AuthPage() {
           </form>
 
           <p className="mt-5 text-center text-sm text-muted-foreground">
-            {isSignup ? "Already have an account? " : "New to FluentID? "}
+            {isSignup ? "Already have an account? " : "New to TwoMoon Academy? "}
             <button
               type="button"
               onClick={() => setIsSignup((v) => !v)}

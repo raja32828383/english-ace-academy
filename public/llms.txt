@@ -1,10 +1,10 @@
-# FluentID
+# TwoMoon Academy
 
 > A fun, gamified platform to learn English, built for Indonesian students.
 
-FluentID offers a structured learning path (Beginner, Intermediate, Advanced) with vocabulary flashcards (spaced repetition), grammar, listening, speaking, and reading practice, quizzes with instant feedback, daily streaks, XP, achievements, and leaderboards.
+TwoMoon Academy offers a structured learning path (Beginner, Intermediate, Advanced) with vocabulary flashcards (spaced repetition), grammar, listening, speaking, and reading practice, quizzes with instant feedback, daily streaks, XP, achievements, and leaderboards.
 
 ## Pages
-- [Home](/): Overview of FluentID and how it helps you learn English.
+- [Home](/): Overview of TwoMoon Academy and how it helps you learn English.
 - [Learning path](/learn): Browse all lessons by level and category.
 - [Sign in](/auth): Create an account or log in.

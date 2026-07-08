@@ -80,15 +80,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "FluentID — Learn English, Made for Indonesian Students" },
+      { title: "TwoMoon Academy — Learn English, Made for Indonesian Students" },
       {
         name: "description",
         content:
           "Belajar bahasa Inggris with a fun, structured path built for Indonesian learners. Vocabulary flashcards, grammar, listening, speaking, quizzes, streaks, and XP.",
       },
-      { name: "author", content: "FluentID" },
-      { property: "og:site_name", content: "FluentID" },
-      { property: "og:title", content: "FluentID — Learn English, Made for Indonesian Students" },
+      { name: "author", content: "TwoMoon Academy" },
+      { property: "og:site_name", content: "TwoMoon Academy" },
+      { property: "og:title", content: "TwoMoon Academy — Learn English, Made for Indonesian Students" },
       {
         property: "og:description",
         content:
@@ -100,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         "script:ld+json": {
           "@context": "https://schema.org",
           "@type": "EducationalOrganization",
-          name: "FluentID",
+          name: "TwoMoon Academy",
           description: "English learning platform for Indonesian students.",
         },
       },
