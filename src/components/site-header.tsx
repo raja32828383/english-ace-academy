@@ -30,6 +30,12 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-primary-foreground"
+      >
+        Skip to content
+      </a>
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-4 px-4">
         <Logo />
 
