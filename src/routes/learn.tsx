@@ -12,9 +12,9 @@ import { useAuth } from "@/lib/auth";
 export const Route = createFileRoute("/learn")({
   head: () => ({
     meta: [
-      { title: "Learning Path — FluentID" },
-      { name: "description", content: "Explore FluentID's structured English learning path: Beginner, Intermediate, and Advanced lessons across vocabulary, grammar, listening, speaking, and reading." },
-      { property: "og:title", content: "Learning Path — FluentID" },
+      { title: "Learning Path — TwoMoon Academy" },
+      { name: "description", content: "Explore TwoMoon Academy's structured English learning path: Beginner, Intermediate, and Advanced lessons across vocabulary, grammar, listening, speaking, and reading." },
+      { property: "og:title", content: "Learning Path — TwoMoon Academy" },
       { property: "og:description", content: "Structured English lessons from beginner to advanced, built for Indonesian students." },
       { property: "og:url", content: "/learn" },
     ],
