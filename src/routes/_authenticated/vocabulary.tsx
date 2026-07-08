@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth";
 import { vocabularyQuery, type Vocabulary } from "@/lib/data";
 import { computeNextReview, REVIEW_GRADES, type ReviewState } from "@/lib/srs";
