@@ -22,12 +22,16 @@ function LeaderboardPage() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <div className="mx-auto max-w-2xl px-4 py-8">
+      <main id="main-content" className="mx-auto max-w-2xl px-4 py-8">
         <h1 className="font-display text-3xl font-extrabold">Leaderboard</h1>
         <p className="mt-1 text-muted-foreground">Top learners by XP. Keep grinding to climb!</p>
 
         {isLoading ? (
-          <p className="mt-10 text-center text-muted-foreground">Loading…</p>
+          <div className="mt-6 space-y-2" aria-hidden="true">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <Skeleton key={i} className="h-16 rounded-xl" />
+            ))}
+          </div>
         ) : (
           <div className="mt-6 space-y-2">
             {rows.map((row, i) => {
