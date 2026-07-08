@@ -17,7 +17,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   // Read persisted preference after mount to avoid SSR hydration mismatch.
   useEffect(() => {
-    const stored = localStorage.getItem("fluentid-theme") as Theme | null;
+    const stored = (localStorage.getItem("twomoon-theme") ??
+      localStorage.getItem("fluentid-theme")) as Theme | null;
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const initial = stored ?? (prefersDark ? "dark" : "light");
     setTheme(initial);
@@ -26,7 +27,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.toggle("dark", theme === "dark");
-    localStorage.setItem("fluentid-theme", theme);
+    localStorage.setItem("twomoon-theme", theme);
   }, [theme]);
 
   const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
