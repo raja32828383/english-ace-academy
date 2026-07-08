@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { Flame, Medal, Star } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { EmptyState } from "@/components/ui/empty-state";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { leaderboardQuery } from "@/lib/data";
 import { useAuth } from "@/lib/auth";
