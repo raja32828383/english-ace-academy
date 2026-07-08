@@ -68,7 +68,10 @@ export function SiteHeader() {
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                <button
+                  className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  aria-label="Open account menu"
+                >
                   <Avatar className="h-9 w-9 border-2 border-primary">
                     <AvatarFallback className="bg-primary/10 font-bold text-primary">
                       {(profile?.display_name ?? "L").slice(0, 1).toUpperCase()}
