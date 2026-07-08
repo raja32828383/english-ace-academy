@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * FluentID design system
+ * TwoMoon Academy design system
  * Friendly, energetic English-learning look: fresh teal-green primary,
  * warm coral accent, sunny gold for XP/rewards. Rounded, tactile UI.
  * All colors use oklch. Add new tokens in :root and .dark, then map in @theme.
