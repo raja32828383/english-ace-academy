@@ -57,42 +57,52 @@ function AchievementsPage() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <div className="mx-auto max-w-3xl px-4 py-8">
+      <main id="main-content" className="mx-auto max-w-3xl px-4 py-8">
         <h1 className="font-display text-3xl font-extrabold">Achievements</h1>
         <p className="mt-1 text-muted-foreground">
           {earnedIds.size} of {achievements.length} badges unlocked.
         </p>
 
-        <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          {achievements.map((a) => {
-            const Icon = ICONS[a.icon] ?? Award;
-            const unlocked = earnedIds.has(a.id);
-            return (
-              <Card
-                key={a.id}
-                className={cn(
-                  "flex items-center gap-4 p-5",
-                  unlocked ? "border-2 border-gold/40 bg-gold/5" : "opacity-70",
-                )}
-              >
-                <span
+        {achievements.length === 0 ? (
+          <EmptyState
+            className="mt-6"
+            icon={<Award className="h-6 w-6" />}
+            title="No badges yet"
+            description="Achievements will appear here as you learn. Complete lessons to start unlocking them."
+          />
+        ) : (
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {achievements.map((a) => {
+              const Icon = ICONS[a.icon] ?? Award;
+              const unlocked = earnedIds.has(a.id);
+              return (
+                <Card
+                  key={a.id}
                   className={cn(
-                    "grid h-14 w-14 shrink-0 place-items-center rounded-2xl",
-                    unlocked ? "bg-gold/20 text-gold-foreground" : "bg-muted text-muted-foreground",
+                    "flex items-center gap-4 p-5",
+                    unlocked ? "border-2 border-gold/40 bg-gold/5" : "opacity-70",
                   )}
                 >
-                  {unlocked ? <Icon className="h-7 w-7" /> : <Lock className="h-6 w-6" />}
-                </span>
-                <div className="min-w-0">
-                  <h3 className="font-bold">{a.title}</h3>
-                  <p className="text-sm text-muted-foreground">{a.description}</p>
-                  {a.xp_reward > 0 && <p className="mt-1 text-xs font-bold text-gold">+{a.xp_reward} XP</p>}
-                </div>
-              </Card>
-            );
-          })}
-        </div>
-      </div>
+                  <span
+                    className={cn(
+                      "grid h-14 w-14 shrink-0 place-items-center rounded-2xl",
+                      unlocked ? "bg-gold/20 text-gold-foreground" : "bg-muted text-muted-foreground",
+                    )}
+                    aria-hidden="true"
+                  >
+                    {unlocked ? <Icon className="h-7 w-7" /> : <Lock className="h-6 w-6" />}
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="font-bold">{a.title}</h3>
+                    <p className="text-sm text-muted-foreground">{a.description}</p>
+                    {a.xp_reward > 0 && <p className="mt-1 text-xs font-bold text-gold">+{a.xp_reward} XP</p>}
+                  </div>
+                </Card>
+              );
+            })}
+          </div>
+        )}
+      </main>
     </div>
   );
 }
