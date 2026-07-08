@@ -31,7 +31,7 @@ function LearnPage() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <div className="mx-auto max-w-5xl px-4 py-10">
+      <main id="main-content" className="mx-auto max-w-5xl px-4 py-10">
         <h1 className="font-display text-3xl font-extrabold md:text-4xl">Learning path</h1>
         <p className="mt-2 text-muted-foreground">
           Follow the path from beginner to advanced. Complete lessons to earn XP and keep your streak.
@@ -39,7 +39,7 @@ function LearnPage() {
         <Suspense fallback={<PathSkeleton />}>
           <LevelSections />
         </Suspense>
-      </div>
+      </main>
     </div>
   );
 }
