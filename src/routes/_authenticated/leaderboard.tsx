@@ -65,11 +65,16 @@ function LeaderboardPage() {
               );
             })}
             {rows.length === 0 && (
-              <p className="mt-10 text-center text-muted-foreground">No learners yet. Be the first!</p>
+              <EmptyState
+                className="mt-6"
+                icon={<Medal className="h-6 w-6" />}
+                title="No learners yet"
+                description="Complete lessons to earn XP and be the first on the leaderboard!"
+              />
             )}
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }
