@@ -50,8 +50,20 @@ function Dashboard() {
       return data;
     },
   });
+  const { data: vocab = [] } = useQuery(vocabularyQuery());
+  const { data: userVocab = [] } = useQuery(userVocabQuery(user?.id));
 
   const loading = lessonsPending || progressPending;
+
+  // Vocabulary progress
+  const vocabToday = new Date().toISOString().slice(0, 10);
+  const vocabLearned = userVocab.filter((s) => s.status !== "new").length;
+  const vocabMastered = userVocab.filter((s) => s.status === "mastered").length;
+  const vocabDue = vocab.filter((v) => {
+    const s = userVocab.find((u) => u.vocabulary_id === v.id);
+    return !s || s.due_date <= vocabToday;
+  }).length;
+  const vocabPct = vocab.length ? Math.round((vocabMastered / vocab.length) * 100) : 0;
 
   const completedIds = new Set(
     progress.filter((p) => p.status === "completed").map((p) => p.lesson_id),
