@@ -21,6 +21,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAchievementsRouteImport } from './routes/_authenticated/achievements'
 import { Route as AuthenticatedVocabularyIndexRouteImport } from './routes/_authenticated/vocabulary.index'
+import { Route as AuthenticatedVocabularyFlashcardsRouteImport } from './routes/_authenticated/vocabulary.flashcards'
 import { Route as AuthenticatedVocabularyWordIdRouteImport } from './routes/_authenticated/vocabulary.$wordId'
 import { Route as AuthenticatedLessonLessonIdRouteImport } from './routes/_authenticated/lesson.$lessonId'
 
@@ -86,6 +87,12 @@ const AuthenticatedVocabularyIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedVocabularyRoute,
   } as any)
+const AuthenticatedVocabularyFlashcardsRoute =
+  AuthenticatedVocabularyFlashcardsRouteImport.update({
+    id: '/flashcards',
+    path: '/flashcards',
+    getParentRoute: () => AuthenticatedVocabularyRoute,
+  } as any)
 const AuthenticatedVocabularyWordIdRoute =
   AuthenticatedVocabularyWordIdRouteImport.update({
     id: '/$wordId',
@@ -112,6 +119,7 @@ export interface FileRoutesByFullPath {
   '/vocabulary': typeof AuthenticatedVocabularyRouteWithChildren
   '/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
   '/vocabulary/$wordId': typeof AuthenticatedVocabularyWordIdRoute
+  '/vocabulary/flashcards': typeof AuthenticatedVocabularyFlashcardsRoute
   '/vocabulary/': typeof AuthenticatedVocabularyIndexRoute
 }
 export interface FileRoutesByTo {
@@ -126,6 +134,7 @@ export interface FileRoutesByTo {
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
   '/vocabulary/$wordId': typeof AuthenticatedVocabularyWordIdRoute
+  '/vocabulary/flashcards': typeof AuthenticatedVocabularyFlashcardsRoute
   '/vocabulary': typeof AuthenticatedVocabularyIndexRoute
 }
 export interface FileRoutesById {
@@ -143,6 +152,7 @@ export interface FileRoutesById {
   '/_authenticated/vocabulary': typeof AuthenticatedVocabularyRouteWithChildren
   '/_authenticated/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
   '/_authenticated/vocabulary/$wordId': typeof AuthenticatedVocabularyWordIdRoute
+  '/_authenticated/vocabulary/flashcards': typeof AuthenticatedVocabularyFlashcardsRoute
   '/_authenticated/vocabulary/': typeof AuthenticatedVocabularyIndexRoute
 }
 export interface FileRouteTypes {
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/vocabulary'
     | '/lesson/$lessonId'
     | '/vocabulary/$wordId'
+    | '/vocabulary/flashcards'
     | '/vocabulary/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
     | '/leaderboard'
     | '/lesson/$lessonId'
     | '/vocabulary/$wordId'
+    | '/vocabulary/flashcards'
     | '/vocabulary'
   id:
     | '__root__'
@@ -190,6 +202,7 @@ export interface FileRouteTypes {
     | '/_authenticated/vocabulary'
     | '/_authenticated/lesson/$lessonId'
     | '/_authenticated/vocabulary/$wordId'
+    | '/_authenticated/vocabulary/flashcards'
     | '/_authenticated/vocabulary/'
   fileRoutesById: FileRoutesById
 }
@@ -288,6 +301,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVocabularyIndexRouteImport
       parentRoute: typeof AuthenticatedVocabularyRoute
     }
+    '/_authenticated/vocabulary/flashcards': {
+      id: '/_authenticated/vocabulary/flashcards'
+      path: '/flashcards'
+      fullPath: '/vocabulary/flashcards'
+      preLoaderRoute: typeof AuthenticatedVocabularyFlashcardsRouteImport
+      parentRoute: typeof AuthenticatedVocabularyRoute
+    }
     '/_authenticated/vocabulary/$wordId': {
       id: '/_authenticated/vocabulary/$wordId'
       path: '/$wordId'
@@ -307,12 +327,15 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedVocabularyRouteChildren {
   AuthenticatedVocabularyWordIdRoute: typeof AuthenticatedVocabularyWordIdRoute
+  AuthenticatedVocabularyFlashcardsRoute: typeof AuthenticatedVocabularyFlashcardsRoute
   AuthenticatedVocabularyIndexRoute: typeof AuthenticatedVocabularyIndexRoute
 }
 
 const AuthenticatedVocabularyRouteChildren: AuthenticatedVocabularyRouteChildren =
   {
     AuthenticatedVocabularyWordIdRoute: AuthenticatedVocabularyWordIdRoute,
+    AuthenticatedVocabularyFlashcardsRoute:
+      AuthenticatedVocabularyFlashcardsRoute,
     AuthenticatedVocabularyIndexRoute: AuthenticatedVocabularyIndexRoute,
   }
 
