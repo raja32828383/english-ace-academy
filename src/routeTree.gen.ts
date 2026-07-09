@@ -20,6 +20,7 @@ import { Route as AuthenticatedLeaderboardRouteImport } from './routes/_authenti
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAchievementsRouteImport } from './routes/_authenticated/achievements'
+import { Route as AuthenticatedVocabularyIndexRouteImport } from './routes/_authenticated/vocabulary.index'
 import { Route as AuthenticatedLessonLessonIdRouteImport } from './routes/_authenticated/lesson.$lessonId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -78,6 +79,12 @@ const AuthenticatedAchievementsRoute =
     path: '/achievements',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedVocabularyIndexRoute =
+  AuthenticatedVocabularyIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedVocabularyRoute,
+  } as any)
 const AuthenticatedLessonLessonIdRoute =
   AuthenticatedLessonLessonIdRouteImport.update({
     id: '/lesson/$lessonId',
@@ -95,8 +102,9 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
-  '/vocabulary': typeof AuthenticatedVocabularyRoute
+  '/vocabulary': typeof AuthenticatedVocabularyRouteWithChildren
   '/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
+  '/vocabulary/': typeof AuthenticatedVocabularyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -108,8 +116,8 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthenticatedAdminRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
-  '/vocabulary': typeof AuthenticatedVocabularyRoute
   '/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
+  '/vocabulary': typeof AuthenticatedVocabularyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -123,8 +131,9 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/leaderboard': typeof AuthenticatedLeaderboardRoute
-  '/_authenticated/vocabulary': typeof AuthenticatedVocabularyRoute
+  '/_authenticated/vocabulary': typeof AuthenticatedVocabularyRouteWithChildren
   '/_authenticated/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
+  '/_authenticated/vocabulary/': typeof AuthenticatedVocabularyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
     | '/leaderboard'
     | '/vocabulary'
     | '/lesson/$lessonId'
+    | '/vocabulary/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -151,8 +161,8 @@ export interface FileRouteTypes {
     | '/admin'
     | '/dashboard'
     | '/leaderboard'
-    | '/vocabulary'
     | '/lesson/$lessonId'
+    | '/vocabulary'
   id:
     | '__root__'
     | '/'
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
     | '/_authenticated/leaderboard'
     | '/_authenticated/vocabulary'
     | '/_authenticated/lesson/$lessonId'
+    | '/_authenticated/vocabulary/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -257,6 +268,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAchievementsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/vocabulary/': {
+      id: '/_authenticated/vocabulary/'
+      path: '/'
+      fullPath: '/vocabulary/'
+      preLoaderRoute: typeof AuthenticatedVocabularyIndexRouteImport
+      parentRoute: typeof AuthenticatedVocabularyRoute
+    }
     '/_authenticated/lesson/$lessonId': {
       id: '/_authenticated/lesson/$lessonId'
       path: '/lesson/$lessonId'
@@ -267,12 +285,26 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedVocabularyRouteChildren {
+  AuthenticatedVocabularyIndexRoute: typeof AuthenticatedVocabularyIndexRoute
+}
+
+const AuthenticatedVocabularyRouteChildren: AuthenticatedVocabularyRouteChildren =
+  {
+    AuthenticatedVocabularyIndexRoute: AuthenticatedVocabularyIndexRoute,
+  }
+
+const AuthenticatedVocabularyRouteWithChildren =
+  AuthenticatedVocabularyRoute._addFileChildren(
+    AuthenticatedVocabularyRouteChildren,
+  )
+
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAchievementsRoute: typeof AuthenticatedAchievementsRoute
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedLeaderboardRoute: typeof AuthenticatedLeaderboardRoute
-  AuthenticatedVocabularyRoute: typeof AuthenticatedVocabularyRoute
+  AuthenticatedVocabularyRoute: typeof AuthenticatedVocabularyRouteWithChildren
   AuthenticatedLessonLessonIdRoute: typeof AuthenticatedLessonLessonIdRoute
 }
 
@@ -281,7 +313,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedLeaderboardRoute: AuthenticatedLeaderboardRoute,
-  AuthenticatedVocabularyRoute: AuthenticatedVocabularyRoute,
+  AuthenticatedVocabularyRoute: AuthenticatedVocabularyRouteWithChildren,
   AuthenticatedLessonLessonIdRoute: AuthenticatedLessonLessonIdRoute,
 }
 
