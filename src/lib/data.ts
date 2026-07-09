@@ -37,6 +37,18 @@ export interface Vocabulary {
   example: string | null;
   phonetic: string | null;
   level: Level;
+  part_of_speech: string | null;
+  pronunciation: string | null;
+  english_definition: string | null;
+  example_translation: string | null;
+  synonyms: string[];
+  antonyms: string[];
+  category: string;
+  tags: string[];
+  image_url: string | null;
+  audio_url: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
 export const LEVELS: Level[] = ["beginner", "intermediate", "advanced"];
