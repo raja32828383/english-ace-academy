@@ -219,3 +219,29 @@
 @utility shadow-soft {
   box-shadow: var(--shadow-soft);
 }
+
+/* ===== Flashcard 3D flip ===== */
+@utility flip-perspective {
+  perspective: 1200px;
+}
+
+@utility flip-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+@utility flip-inner-flipped {
+  transform: rotateY(180deg);
+}
+
+@utility flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@utility flip-face-back {
+  transform: rotateY(180deg);
+}
