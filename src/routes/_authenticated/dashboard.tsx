@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   History,
   BarChart3,
+  Layers,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/site-header";
@@ -23,7 +24,8 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth";
-import { lessonsQuery } from "@/lib/data";
+import { lessonsQuery, vocabularyQuery } from "@/lib/data";
+import { userVocabQuery } from "@/lib/vocab";
 import { categoryMeta } from "@/lib/lesson-meta";
 import { levelFromXp } from "@/lib/gamification";
 

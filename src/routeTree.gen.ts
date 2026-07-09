@@ -15,7 +15,6 @@ import { Route as LearnRouteImport } from './routes/learn'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedVocabularyRouteImport } from './routes/_authenticated/vocabulary'
 import { Route as AuthenticatedLeaderboardRouteImport } from './routes/_authenticated/leaderboard'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
@@ -55,11 +54,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedVocabularyRoute = AuthenticatedVocabularyRouteImport.update({
-  id: '/vocabulary',
-  path: '/vocabulary',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedLeaderboardRoute =
   AuthenticatedLeaderboardRouteImport.update({
     id: '/leaderboard',
@@ -84,27 +78,27 @@ const AuthenticatedAchievementsRoute =
   } as any)
 const AuthenticatedVocabularyIndexRoute =
   AuthenticatedVocabularyIndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => AuthenticatedVocabularyRoute,
+    id: '/vocabulary/',
+    path: '/vocabulary/',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedVocabularyQuizRoute =
   AuthenticatedVocabularyQuizRouteImport.update({
-    id: '/quiz',
-    path: '/quiz',
-    getParentRoute: () => AuthenticatedVocabularyRoute,
+    id: '/vocabulary/quiz',
+    path: '/vocabulary/quiz',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedVocabularyFlashcardsRoute =
   AuthenticatedVocabularyFlashcardsRouteImport.update({
-    id: '/flashcards',
-    path: '/flashcards',
-    getParentRoute: () => AuthenticatedVocabularyRoute,
+    id: '/vocabulary/flashcards',
+    path: '/vocabulary/flashcards',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedVocabularyWordIdRoute =
   AuthenticatedVocabularyWordIdRouteImport.update({
-    id: '/$wordId',
-    path: '/$wordId',
-    getParentRoute: () => AuthenticatedVocabularyRoute,
+    id: '/vocabulary/$wordId',
+    path: '/vocabulary/$wordId',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedLessonLessonIdRoute =
   AuthenticatedLessonLessonIdRouteImport.update({
@@ -123,7 +117,6 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AuthenticatedAdminRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
-  '/vocabulary': typeof AuthenticatedVocabularyRouteWithChildren
   '/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
   '/vocabulary/$wordId': typeof AuthenticatedVocabularyWordIdRoute
   '/vocabulary/flashcards': typeof AuthenticatedVocabularyFlashcardsRoute
@@ -158,7 +151,6 @@ export interface FileRoutesById {
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/leaderboard': typeof AuthenticatedLeaderboardRoute
-  '/_authenticated/vocabulary': typeof AuthenticatedVocabularyRouteWithChildren
   '/_authenticated/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
   '/_authenticated/vocabulary/$wordId': typeof AuthenticatedVocabularyWordIdRoute
   '/_authenticated/vocabulary/flashcards': typeof AuthenticatedVocabularyFlashcardsRoute
@@ -177,7 +169,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/dashboard'
     | '/leaderboard'
-    | '/vocabulary'
     | '/lesson/$lessonId'
     | '/vocabulary/$wordId'
     | '/vocabulary/flashcards'
@@ -211,7 +202,6 @@ export interface FileRouteTypes {
     | '/_authenticated/admin'
     | '/_authenticated/dashboard'
     | '/_authenticated/leaderboard'
-    | '/_authenticated/vocabulary'
     | '/_authenticated/lesson/$lessonId'
     | '/_authenticated/vocabulary/$wordId'
     | '/_authenticated/vocabulary/flashcards'
@@ -272,13 +262,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/vocabulary': {
-      id: '/_authenticated/vocabulary'
-      path: '/vocabulary'
-      fullPath: '/vocabulary'
-      preLoaderRoute: typeof AuthenticatedVocabularyRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/leaderboard': {
       id: '/_authenticated/leaderboard'
       path: '/leaderboard'
@@ -309,31 +292,31 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/vocabulary/': {
       id: '/_authenticated/vocabulary/'
-      path: '/'
+      path: '/vocabulary'
       fullPath: '/vocabulary/'
       preLoaderRoute: typeof AuthenticatedVocabularyIndexRouteImport
-      parentRoute: typeof AuthenticatedVocabularyRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/vocabulary/quiz': {
       id: '/_authenticated/vocabulary/quiz'
-      path: '/quiz'
+      path: '/vocabulary/quiz'
       fullPath: '/vocabulary/quiz'
       preLoaderRoute: typeof AuthenticatedVocabularyQuizRouteImport
-      parentRoute: typeof AuthenticatedVocabularyRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/vocabulary/flashcards': {
       id: '/_authenticated/vocabulary/flashcards'
-      path: '/flashcards'
+      path: '/vocabulary/flashcards'
       fullPath: '/vocabulary/flashcards'
       preLoaderRoute: typeof AuthenticatedVocabularyFlashcardsRouteImport
-      parentRoute: typeof AuthenticatedVocabularyRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/vocabulary/$wordId': {
       id: '/_authenticated/vocabulary/$wordId'
-      path: '/$wordId'
+      path: '/vocabulary/$wordId'
       fullPath: '/vocabulary/$wordId'
       preLoaderRoute: typeof AuthenticatedVocabularyWordIdRouteImport
-      parentRoute: typeof AuthenticatedVocabularyRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/lesson/$lessonId': {
       id: '/_authenticated/lesson/$lessonId'
@@ -345,34 +328,16 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface AuthenticatedVocabularyRouteChildren {
-  AuthenticatedVocabularyWordIdRoute: typeof AuthenticatedVocabularyWordIdRoute
-  AuthenticatedVocabularyFlashcardsRoute: typeof AuthenticatedVocabularyFlashcardsRoute
-  AuthenticatedVocabularyQuizRoute: typeof AuthenticatedVocabularyQuizRoute
-  AuthenticatedVocabularyIndexRoute: typeof AuthenticatedVocabularyIndexRoute
-}
-
-const AuthenticatedVocabularyRouteChildren: AuthenticatedVocabularyRouteChildren =
-  {
-    AuthenticatedVocabularyWordIdRoute: AuthenticatedVocabularyWordIdRoute,
-    AuthenticatedVocabularyFlashcardsRoute:
-      AuthenticatedVocabularyFlashcardsRoute,
-    AuthenticatedVocabularyQuizRoute: AuthenticatedVocabularyQuizRoute,
-    AuthenticatedVocabularyIndexRoute: AuthenticatedVocabularyIndexRoute,
-  }
-
-const AuthenticatedVocabularyRouteWithChildren =
-  AuthenticatedVocabularyRoute._addFileChildren(
-    AuthenticatedVocabularyRouteChildren,
-  )
-
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAchievementsRoute: typeof AuthenticatedAchievementsRoute
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedLeaderboardRoute: typeof AuthenticatedLeaderboardRoute
-  AuthenticatedVocabularyRoute: typeof AuthenticatedVocabularyRouteWithChildren
   AuthenticatedLessonLessonIdRoute: typeof AuthenticatedLessonLessonIdRoute
+  AuthenticatedVocabularyWordIdRoute: typeof AuthenticatedVocabularyWordIdRoute
+  AuthenticatedVocabularyFlashcardsRoute: typeof AuthenticatedVocabularyFlashcardsRoute
+  AuthenticatedVocabularyQuizRoute: typeof AuthenticatedVocabularyQuizRoute
+  AuthenticatedVocabularyIndexRoute: typeof AuthenticatedVocabularyIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -380,8 +345,12 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedLeaderboardRoute: AuthenticatedLeaderboardRoute,
-  AuthenticatedVocabularyRoute: AuthenticatedVocabularyRouteWithChildren,
   AuthenticatedLessonLessonIdRoute: AuthenticatedLessonLessonIdRoute,
+  AuthenticatedVocabularyWordIdRoute: AuthenticatedVocabularyWordIdRoute,
+  AuthenticatedVocabularyFlashcardsRoute:
+    AuthenticatedVocabularyFlashcardsRoute,
+  AuthenticatedVocabularyQuizRoute: AuthenticatedVocabularyQuizRoute,
+  AuthenticatedVocabularyIndexRoute: AuthenticatedVocabularyIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
