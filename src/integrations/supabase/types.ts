@@ -46,32 +46,50 @@ export type Database = {
       }
       flashcard_reviews: {
         Row: {
+          correct_count: number
+          created_at: string
           due_date: string
           ease_factor: number
           id: string
           interval_days: number
+          is_favorite: boolean
           last_reviewed: string | null
+          mastery_score: number
           repetitions: number
+          review_count: number
+          status: string
           user_id: string
           vocabulary_id: string
         }
         Insert: {
+          correct_count?: number
+          created_at?: string
           due_date?: string
           ease_factor?: number
           id?: string
           interval_days?: number
+          is_favorite?: boolean
           last_reviewed?: string | null
+          mastery_score?: number
           repetitions?: number
+          review_count?: number
+          status?: string
           user_id: string
           vocabulary_id: string
         }
         Update: {
+          correct_count?: number
+          created_at?: string
           due_date?: string
           ease_factor?: number
           id?: string
           interval_days?: number
+          is_favorite?: boolean
           last_reviewed?: string | null
+          mastery_score?: number
           repetitions?: number
+          review_count?: number
+          status?: string
           user_id?: string
           vocabulary_id?: string
         }
@@ -274,30 +292,63 @@ export type Database = {
       }
       vocabulary: {
         Row: {
+          antonyms: string[]
+          audio_url: string | null
+          category: string
           created_at: string
+          english_definition: string | null
           example: string | null
+          example_translation: string | null
           id: string
+          image_url: string | null
           level: Database["public"]["Enums"]["lesson_level"]
+          part_of_speech: string | null
           phonetic: string | null
+          pronunciation: string | null
+          synonyms: string[]
+          tags: string[]
           translation: string
+          updated_at: string
           word: string
         }
         Insert: {
+          antonyms?: string[]
+          audio_url?: string | null
+          category?: string
           created_at?: string
+          english_definition?: string | null
           example?: string | null
+          example_translation?: string | null
           id?: string
+          image_url?: string | null
           level?: Database["public"]["Enums"]["lesson_level"]
+          part_of_speech?: string | null
           phonetic?: string | null
+          pronunciation?: string | null
+          synonyms?: string[]
+          tags?: string[]
           translation: string
+          updated_at?: string
           word: string
         }
         Update: {
+          antonyms?: string[]
+          audio_url?: string | null
+          category?: string
           created_at?: string
+          english_definition?: string | null
           example?: string | null
+          example_translation?: string | null
           id?: string
+          image_url?: string | null
           level?: Database["public"]["Enums"]["lesson_level"]
+          part_of_speech?: string | null
           phonetic?: string | null
+          pronunciation?: string | null
+          synonyms?: string[]
+          tags?: string[]
           translation?: string
+          updated_at?: string
           word?: string
         }
         Relationships: []

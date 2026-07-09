@@ -37,6 +37,18 @@ export interface Vocabulary {
   example: string | null;
   phonetic: string | null;
   level: Level;
+  part_of_speech: string | null;
+  pronunciation: string | null;
+  english_definition: string | null;
+  example_translation: string | null;
+  synonyms: string[];
+  antonyms: string[];
+  category: string;
+  tags: string[];
+  image_url: string | null;
+  audio_url: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
 export const LEVELS: Level[] = ["beginner", "intermediate", "advanced"];
@@ -67,10 +79,21 @@ export const lessonQuery = (id: string) =>
 export const vocabularyQuery = () =>
   queryOptions({
     queryKey: ["vocabulary"],
+    staleTime: 5 * 60_000,
     queryFn: async () => {
       const { data, error } = await supabase.from("vocabulary").select("*").order("word");
       if (error) throw error;
       return data as unknown as Vocabulary[];
+    },
+  });
+
+export const vocabularyWordQuery = (id: string) =>
+  queryOptions({
+    queryKey: ["vocabulary-word", id],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("vocabulary").select("*").eq("id", id).maybeSingle();
+      if (error) throw error;
+      return data as unknown as Vocabulary | null;
     },
   });
 

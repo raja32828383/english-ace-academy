@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   History,
   BarChart3,
+  Layers,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader } from "@/components/site-header";
@@ -23,7 +24,8 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@/lib/auth";
-import { lessonsQuery } from "@/lib/data";
+import { lessonsQuery, vocabularyQuery } from "@/lib/data";
+import { userVocabQuery } from "@/lib/vocab";
 import { categoryMeta } from "@/lib/lesson-meta";
 import { levelFromXp } from "@/lib/gamification";
 
@@ -48,8 +50,20 @@ function Dashboard() {
       return data;
     },
   });
+  const { data: vocab = [] } = useQuery(vocabularyQuery());
+  const { data: userVocab = [] } = useQuery(userVocabQuery(user?.id));
 
   const loading = lessonsPending || progressPending;
+
+  // Vocabulary progress
+  const vocabToday = new Date().toISOString().slice(0, 10);
+  const vocabLearned = userVocab.filter((s) => s.status !== "new").length;
+  const vocabMastered = userVocab.filter((s) => s.status === "mastered").length;
+  const vocabDue = vocab.filter((v) => {
+    const s = userVocab.find((u) => u.vocabulary_id === v.id);
+    return !s || s.due_date <= vocabToday;
+  }).length;
+  const vocabPct = vocab.length ? Math.round((vocabMastered / vocab.length) * 100) : 0;
 
   const completedIds = new Set(
     progress.filter((p) => p.status === "completed").map((p) => p.lesson_id),
@@ -134,8 +148,54 @@ function Dashboard() {
           </Card>
         </div>
 
+        {/* Vocabulary spotlight */}
+        <Card className="mt-4 overflow-hidden p-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="flex items-center gap-2 font-display text-xl font-extrabold">
+                <BookMarked className="h-5 w-5 text-primary" /> Vocabulary
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                {vocabDue > 0
+                  ? `${vocabDue} ${vocabDue === 1 ? "word is" : "words are"} due for review today.`
+                  : "You're all caught up — learn some new words!"}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Button asChild variant="hero">
+                <Link to="/vocabulary/flashcards">
+                  <Layers className="h-4 w-4" /> Continue learning
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link to="/vocabulary">Browse words</Link>
+              </Button>
+            </div>
+          </div>
+          <div className="mt-4 grid grid-cols-3 gap-3 text-center">
+            <div className="rounded-xl bg-muted/50 p-3">
+              <p className="font-display text-2xl font-extrabold">{vocabLearned}</p>
+              <p className="text-xs text-muted-foreground">Learned</p>
+            </div>
+            <div className="rounded-xl bg-muted/50 p-3">
+              <p className="font-display text-2xl font-extrabold text-success">{vocabMastered}</p>
+              <p className="text-xs text-muted-foreground">Mastered</p>
+            </div>
+            <div className="rounded-xl bg-muted/50 p-3">
+              <p className="font-display text-2xl font-extrabold text-coral">{vocabDue}</p>
+              <p className="text-xs text-muted-foreground">Due today</p>
+            </div>
+          </div>
+          <div className="mt-4 flex items-center justify-between text-sm font-bold">
+            <span>Vocabulary mastery</span>
+            <span className="text-muted-foreground">{vocabPct}%</span>
+          </div>
+          <Progress value={vocabPct} className="mt-2 h-3" />
+        </Card>
+
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
           {/* Continue / recommended learning */}
+
           <Card className="p-6 lg:col-span-2">
             <h2 className="font-display text-xl font-extrabold">Continue learning</h2>
             {loading ? (
@@ -174,7 +234,7 @@ function Dashboard() {
                 description="Amazing work. More content is coming soon."
                 action={
                   <Button asChild variant="outline">
-                    <Link to="/vocabulary">Review flashcards</Link>
+                    <Link to="/vocabulary/flashcards">Review flashcards</Link>
                   </Button>
                 }
               />
@@ -191,7 +251,8 @@ function Dashboard() {
 
           {/* Quick actions */}
           <nav aria-label="Quick actions" className="space-y-3">
-            <QuickLink to="/vocabulary" icon={<BookMarked className="h-5 w-5" />} title="Flashcards" desc="Review vocabulary" />
+            <QuickLink to="/vocabulary/flashcards" icon={<BookMarked className="h-5 w-5" />} title="Flashcards" desc="Review vocabulary" />
+            <QuickLink to="/vocabulary/quiz" icon={<Sparkles className="h-5 w-5" />} title="Vocabulary quiz" desc="Test yourself" />
             <QuickLink to="/leaderboard" icon={<Trophy className="h-5 w-5" />} title="Leaderboard" desc="See your rank" />
             <QuickLink to="/achievements" icon={<Sparkles className="h-5 w-5" />} title="Achievements" desc="Your badges" />
           </nav>
