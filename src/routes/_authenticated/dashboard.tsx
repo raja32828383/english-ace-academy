@@ -234,7 +234,7 @@ function Dashboard() {
                 description="Amazing work. More content is coming soon."
                 action={
                   <Button asChild variant="outline">
-                    <Link to="/vocabulary">Review flashcards</Link>
+                    <Link to="/vocabulary/flashcards">Review flashcards</Link>
                   </Button>
                 }
               />
