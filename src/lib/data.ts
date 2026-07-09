@@ -79,10 +79,21 @@ export const lessonQuery = (id: string) =>
 export const vocabularyQuery = () =>
   queryOptions({
     queryKey: ["vocabulary"],
+    staleTime: 5 * 60_000,
     queryFn: async () => {
       const { data, error } = await supabase.from("vocabulary").select("*").order("word");
       if (error) throw error;
       return data as unknown as Vocabulary[];
+    },
+  });
+
+export const vocabularyWordQuery = (id: string) =>
+  queryOptions({
+    queryKey: ["vocabulary-word", id],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("vocabulary").select("*").eq("id", id).maybeSingle();
+      if (error) throw error;
+      return data as unknown as Vocabulary | null;
     },
   });
 
