@@ -251,10 +251,10 @@ function Dashboard() {
 
           {/* Quick actions */}
           <nav aria-label="Quick actions" className="space-y-3">
+            <QuickLink to="/grammar" icon={<PencilRuler className="h-5 w-5" />} title="Grammar" desc="Lessons & quizzes" />
             <QuickLink to="/vocabulary/flashcards" icon={<BookMarked className="h-5 w-5" />} title="Flashcards" desc="Review vocabulary" />
             <QuickLink to="/vocabulary/quiz" icon={<Sparkles className="h-5 w-5" />} title="Vocabulary quiz" desc="Test yourself" />
             <QuickLink to="/leaderboard" icon={<Trophy className="h-5 w-5" />} title="Leaderboard" desc="See your rank" />
-            <QuickLink to="/achievements" icon={<Sparkles className="h-5 w-5" />} title="Achievements" desc="Your badges" />
           </nav>
         </div>
 
