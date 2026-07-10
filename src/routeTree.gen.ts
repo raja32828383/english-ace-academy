@@ -25,6 +25,7 @@ import { Route as AuthenticatedVocabularyQuizRouteImport } from './routes/_authe
 import { Route as AuthenticatedVocabularyFlashcardsRouteImport } from './routes/_authenticated/vocabulary.flashcards'
 import { Route as AuthenticatedVocabularyWordIdRouteImport } from './routes/_authenticated/vocabulary.$wordId'
 import { Route as AuthenticatedLessonLessonIdRouteImport } from './routes/_authenticated/lesson.$lessonId'
+import { Route as AuthenticatedGrammarCheckerRouteImport } from './routes/_authenticated/grammar.checker'
 import { Route as AuthenticatedGrammarLessonIdRouteImport } from './routes/_authenticated/grammar.$lessonId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -114,6 +115,12 @@ const AuthenticatedLessonLessonIdRoute =
     path: '/lesson/$lessonId',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedGrammarCheckerRoute =
+  AuthenticatedGrammarCheckerRouteImport.update({
+    id: '/grammar/checker',
+    path: '/grammar/checker',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedGrammarLessonIdRoute =
   AuthenticatedGrammarLessonIdRouteImport.update({
     id: '/grammar/$lessonId',
@@ -132,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/grammar/$lessonId': typeof AuthenticatedGrammarLessonIdRoute
+  '/grammar/checker': typeof AuthenticatedGrammarCheckerRoute
   '/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
   '/vocabulary/$wordId': typeof AuthenticatedVocabularyWordIdRoute
   '/vocabulary/flashcards': typeof AuthenticatedVocabularyFlashcardsRoute
@@ -150,6 +158,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/grammar/$lessonId': typeof AuthenticatedGrammarLessonIdRoute
+  '/grammar/checker': typeof AuthenticatedGrammarCheckerRoute
   '/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
   '/vocabulary/$wordId': typeof AuthenticatedVocabularyWordIdRoute
   '/vocabulary/flashcards': typeof AuthenticatedVocabularyFlashcardsRoute
@@ -170,6 +179,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/leaderboard': typeof AuthenticatedLeaderboardRoute
   '/_authenticated/grammar/$lessonId': typeof AuthenticatedGrammarLessonIdRoute
+  '/_authenticated/grammar/checker': typeof AuthenticatedGrammarCheckerRoute
   '/_authenticated/lesson/$lessonId': typeof AuthenticatedLessonLessonIdRoute
   '/_authenticated/vocabulary/$wordId': typeof AuthenticatedVocabularyWordIdRoute
   '/_authenticated/vocabulary/flashcards': typeof AuthenticatedVocabularyFlashcardsRoute
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/leaderboard'
     | '/grammar/$lessonId'
+    | '/grammar/checker'
     | '/lesson/$lessonId'
     | '/vocabulary/$wordId'
     | '/vocabulary/flashcards'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/leaderboard'
     | '/grammar/$lessonId'
+    | '/grammar/checker'
     | '/lesson/$lessonId'
     | '/vocabulary/$wordId'
     | '/vocabulary/flashcards'
@@ -227,6 +239,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/leaderboard'
     | '/_authenticated/grammar/$lessonId'
+    | '/_authenticated/grammar/checker'
     | '/_authenticated/lesson/$lessonId'
     | '/_authenticated/vocabulary/$wordId'
     | '/_authenticated/vocabulary/flashcards'
@@ -358,6 +371,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLessonLessonIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/grammar/checker': {
+      id: '/_authenticated/grammar/checker'
+      path: '/grammar/checker'
+      fullPath: '/grammar/checker'
+      preLoaderRoute: typeof AuthenticatedGrammarCheckerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/grammar/$lessonId': {
       id: '/_authenticated/grammar/$lessonId'
       path: '/grammar/$lessonId'
@@ -374,6 +394,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedLeaderboardRoute: typeof AuthenticatedLeaderboardRoute
   AuthenticatedGrammarLessonIdRoute: typeof AuthenticatedGrammarLessonIdRoute
+  AuthenticatedGrammarCheckerRoute: typeof AuthenticatedGrammarCheckerRoute
   AuthenticatedLessonLessonIdRoute: typeof AuthenticatedLessonLessonIdRoute
   AuthenticatedVocabularyWordIdRoute: typeof AuthenticatedVocabularyWordIdRoute
   AuthenticatedVocabularyFlashcardsRoute: typeof AuthenticatedVocabularyFlashcardsRoute
@@ -388,6 +409,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedLeaderboardRoute: AuthenticatedLeaderboardRoute,
   AuthenticatedGrammarLessonIdRoute: AuthenticatedGrammarLessonIdRoute,
+  AuthenticatedGrammarCheckerRoute: AuthenticatedGrammarCheckerRoute,
   AuthenticatedLessonLessonIdRoute: AuthenticatedLessonLessonIdRoute,
   AuthenticatedVocabularyWordIdRoute: AuthenticatedVocabularyWordIdRoute,
   AuthenticatedVocabularyFlashcardsRoute:
