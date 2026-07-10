@@ -22,6 +22,7 @@ import { useAuth } from "@/lib/auth";
 const NAV = [
   { to: "/learn", label: "Learn" },
   { to: "/vocabulary", label: "Vocabulary" },
+  { to: "/grammar", label: "Grammar" },
   { to: "/leaderboard", label: "Leaderboard" },
 ];
 

@@ -103,6 +103,219 @@ export type Database = {
           },
         ]
       }
+      grammar_ai_checks: {
+        Row: {
+          corrections: Json
+          created_at: string
+          id: string
+          input_text: string
+          overall_feedback: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          corrections?: Json
+          created_at?: string
+          id?: string
+          input_text: string
+          overall_feedback?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          corrections?: Json
+          created_at?: string
+          id?: string
+          input_text?: string
+          overall_feedback?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      grammar_bookmarks: {
+        Row: {
+          created_at: string
+          id: string
+          lesson_slug: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          lesson_slug: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          lesson_slug?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      grammar_lessons: {
+        Row: {
+          content: Json
+          created_at: string
+          estimated_minutes: number
+          id: string
+          level: string
+          order_index: number
+          published: boolean
+          slug: string
+          summary: string | null
+          title: string
+          unit_slug: string
+          updated_at: string
+          xp_reward: number
+        }
+        Insert: {
+          content?: Json
+          created_at?: string
+          estimated_minutes?: number
+          id?: string
+          level?: string
+          order_index?: number
+          published?: boolean
+          slug: string
+          summary?: string | null
+          title: string
+          unit_slug: string
+          updated_at?: string
+          xp_reward?: number
+        }
+        Update: {
+          content?: Json
+          created_at?: string
+          estimated_minutes?: number
+          id?: string
+          level?: string
+          order_index?: number
+          published?: boolean
+          slug?: string
+          summary?: string | null
+          title?: string
+          unit_slug?: string
+          updated_at?: string
+          xp_reward?: number
+        }
+        Relationships: []
+      }
+      grammar_progress: {
+        Row: {
+          best_score: number | null
+          completed_at: string | null
+          created_at: string
+          id: string
+          last_viewed_at: string
+          lesson_slug: string
+          mastery: number
+          status: string
+          time_spent_seconds: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          best_score?: number | null
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          last_viewed_at?: string
+          lesson_slug: string
+          mastery?: number
+          status?: string
+          time_spent_seconds?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          best_score?: number | null
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          last_viewed_at?: string
+          lesson_slug?: string
+          mastery?: number
+          status?: string
+          time_spent_seconds?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      grammar_quiz_attempts: {
+        Row: {
+          correct: number
+          created_at: string
+          id: string
+          lesson_slug: string
+          score: number
+          total: number
+          user_id: string
+        }
+        Insert: {
+          correct: number
+          created_at?: string
+          id?: string
+          lesson_slug: string
+          score: number
+          total: number
+          user_id: string
+        }
+        Update: {
+          correct?: number
+          created_at?: string
+          id?: string
+          lesson_slug?: string
+          score?: number
+          total?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      grammar_units: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          level: string
+          order_index: number
+          published: boolean
+          slug: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          level?: string
+          order_index?: number
+          published?: boolean
+          slug: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          level?: string
+          order_index?: number
+          published?: boolean
+          slug?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       lesson_progress: {
         Row: {
           completed_at: string | null
