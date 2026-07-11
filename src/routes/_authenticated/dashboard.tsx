@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import {
   Flame,
+  Headphones,
   Star,
   Heart,
   Trophy,
@@ -253,8 +254,8 @@ function Dashboard() {
           {/* Quick actions */}
           <nav aria-label="Quick actions" className="space-y-3">
             <QuickLink to="/grammar" icon={<PencilRuler className="h-5 w-5" />} title="Grammar" desc="Lessons & quizzes" />
+            <QuickLink to="/lab" icon={<Headphones className="h-5 w-5" />} title="Reading & Listening" desc="Read, listen & practise" />
             <QuickLink to="/vocabulary/flashcards" icon={<BookMarked className="h-5 w-5" />} title="Flashcards" desc="Review vocabulary" />
-            <QuickLink to="/vocabulary/quiz" icon={<Sparkles className="h-5 w-5" />} title="Vocabulary quiz" desc="Test yourself" />
             <QuickLink to="/leaderboard" icon={<Trophy className="h-5 w-5" />} title="Leaderboard" desc="See your rank" />
           </nav>
         </div>

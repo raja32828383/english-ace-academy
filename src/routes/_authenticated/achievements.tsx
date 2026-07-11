@@ -5,6 +5,7 @@ import {
   BookOpen,
   Flame,
   Footprints,
+  Headphones,
   Star,
   Target,
   Lock,
@@ -26,6 +27,7 @@ const ICONS: Record<string, LucideIcon> = {
   flame: Flame,
   star: Star,
   "book-open": BookOpen,
+  headphones: Headphones,
   target: Target,
   award: Award,
 };
