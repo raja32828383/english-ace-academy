@@ -23,6 +23,7 @@ const NAV = [
   { to: "/learn", label: "Learn" },
   { to: "/vocabulary", label: "Vocabulary" },
   { to: "/grammar", label: "Grammar" },
+  { to: "/lab", label: "Reading & Listening" },
   { to: "/leaderboard", label: "Leaderboard" },
 ];
 

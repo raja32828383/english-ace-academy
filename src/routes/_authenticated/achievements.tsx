@@ -5,6 +5,7 @@ import {
   BookOpen,
   Flame,
   Footprints,
+  Headphones,
   Star,
   Target,
   Lock,
