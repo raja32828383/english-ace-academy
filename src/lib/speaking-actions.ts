@@ -165,7 +165,7 @@ export async function completeSpeakingSession(
         recognized_text: r.recognized,
         confidence: r.confidence,
         accuracy: r.accuracy,
-        word_results: r.wordResults,
+        word_results: r.wordResults as unknown as Json,
       })),
     );
   }
