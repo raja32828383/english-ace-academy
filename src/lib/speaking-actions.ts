@@ -9,6 +9,7 @@ import {
   type DailyChallengeType,
 } from "@/lib/speaking";
 import type { WordResult } from "@/lib/pronunciation";
+import type { Json } from "@/integrations/supabase/types";
 
 /** Grant an achievement by its human code (looks up the row id). */
 async function grantByCode(userId: string, code: string) {
