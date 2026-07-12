@@ -20,6 +20,7 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAchievementsRouteImport } from './routes/_authenticated/achievements'
 import { Route as AuthenticatedVocabularyIndexRouteImport } from './routes/_authenticated/vocabulary.index'
+import { Route as AuthenticatedSpeakingIndexRouteImport } from './routes/_authenticated/speaking.index'
 import { Route as AuthenticatedLabIndexRouteImport } from './routes/_authenticated/lab.index'
 import { Route as AuthenticatedGrammarIndexRouteImport } from './routes/_authenticated/grammar.index'
 import { Route as AuthenticatedVocabularyQuizRouteImport } from './routes/_authenticated/vocabulary.quiz'
@@ -85,6 +86,12 @@ const AuthenticatedVocabularyIndexRoute =
   AuthenticatedVocabularyIndexRouteImport.update({
     id: '/vocabulary/',
     path: '/vocabulary/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSpeakingIndexRoute =
+  AuthenticatedSpeakingIndexRouteImport.update({
+    id: '/speaking/',
+    path: '/speaking/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedLabIndexRoute = AuthenticatedLabIndexRouteImport.update({
@@ -160,6 +167,7 @@ export interface FileRoutesByFullPath {
   '/vocabulary/quiz': typeof AuthenticatedVocabularyQuizRoute
   '/grammar/': typeof AuthenticatedGrammarIndexRoute
   '/lab/': typeof AuthenticatedLabIndexRoute
+  '/speaking/': typeof AuthenticatedSpeakingIndexRoute
   '/vocabulary/': typeof AuthenticatedVocabularyIndexRoute
 }
 export interface FileRoutesByTo {
@@ -181,6 +189,7 @@ export interface FileRoutesByTo {
   '/vocabulary/quiz': typeof AuthenticatedVocabularyQuizRoute
   '/grammar': typeof AuthenticatedGrammarIndexRoute
   '/lab': typeof AuthenticatedLabIndexRoute
+  '/speaking': typeof AuthenticatedSpeakingIndexRoute
   '/vocabulary': typeof AuthenticatedVocabularyIndexRoute
 }
 export interface FileRoutesById {
@@ -204,6 +213,7 @@ export interface FileRoutesById {
   '/_authenticated/vocabulary/quiz': typeof AuthenticatedVocabularyQuizRoute
   '/_authenticated/grammar/': typeof AuthenticatedGrammarIndexRoute
   '/_authenticated/lab/': typeof AuthenticatedLabIndexRoute
+  '/_authenticated/speaking/': typeof AuthenticatedSpeakingIndexRoute
   '/_authenticated/vocabulary/': typeof AuthenticatedVocabularyIndexRoute
 }
 export interface FileRouteTypes {
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
     | '/vocabulary/quiz'
     | '/grammar/'
     | '/lab/'
+    | '/speaking/'
     | '/vocabulary/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -248,6 +259,7 @@ export interface FileRouteTypes {
     | '/vocabulary/quiz'
     | '/grammar'
     | '/lab'
+    | '/speaking'
     | '/vocabulary'
   id:
     | '__root__'
@@ -270,6 +282,7 @@ export interface FileRouteTypes {
     | '/_authenticated/vocabulary/quiz'
     | '/_authenticated/grammar/'
     | '/_authenticated/lab/'
+    | '/_authenticated/speaking/'
     | '/_authenticated/vocabulary/'
   fileRoutesById: FileRoutesById
 }
@@ -361,6 +374,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedVocabularyIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/speaking/': {
+      id: '/_authenticated/speaking/'
+      path: '/speaking'
+      fullPath: '/speaking/'
+      preLoaderRoute: typeof AuthenticatedSpeakingIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/lab/': {
       id: '/_authenticated/lab/'
       path: '/lab'
@@ -441,6 +461,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedVocabularyQuizRoute: typeof AuthenticatedVocabularyQuizRoute
   AuthenticatedGrammarIndexRoute: typeof AuthenticatedGrammarIndexRoute
   AuthenticatedLabIndexRoute: typeof AuthenticatedLabIndexRoute
+  AuthenticatedSpeakingIndexRoute: typeof AuthenticatedSpeakingIndexRoute
   AuthenticatedVocabularyIndexRoute: typeof AuthenticatedVocabularyIndexRoute
 }
 
@@ -459,6 +480,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedVocabularyQuizRoute: AuthenticatedVocabularyQuizRoute,
   AuthenticatedGrammarIndexRoute: AuthenticatedGrammarIndexRoute,
   AuthenticatedLabIndexRoute: AuthenticatedLabIndexRoute,
+  AuthenticatedSpeakingIndexRoute: AuthenticatedSpeakingIndexRoute,
   AuthenticatedVocabularyIndexRoute: AuthenticatedVocabularyIndexRoute,
 }
 
