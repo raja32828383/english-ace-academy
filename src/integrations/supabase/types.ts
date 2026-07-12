@@ -618,6 +618,254 @@ export type Database = {
         }
         Relationships: []
       }
+      speaking_courses: {
+        Row: {
+          audio_url: string | null
+          category: string
+          content: Json
+          created_at: string
+          estimated_minutes: number
+          id: string
+          image_url: string | null
+          level: string
+          order_index: number
+          published: boolean
+          slug: string
+          summary: string | null
+          title: string
+          topic: string | null
+          updated_at: string
+          xp_reward: number
+        }
+        Insert: {
+          audio_url?: string | null
+          category: string
+          content?: Json
+          created_at?: string
+          estimated_minutes?: number
+          id?: string
+          image_url?: string | null
+          level: string
+          order_index?: number
+          published?: boolean
+          slug: string
+          summary?: string | null
+          title: string
+          topic?: string | null
+          updated_at?: string
+          xp_reward?: number
+        }
+        Update: {
+          audio_url?: string | null
+          category?: string
+          content?: Json
+          created_at?: string
+          estimated_minutes?: number
+          id?: string
+          image_url?: string | null
+          level?: string
+          order_index?: number
+          published?: boolean
+          slug?: string
+          summary?: string | null
+          title?: string
+          topic?: string | null
+          updated_at?: string
+          xp_reward?: number
+        }
+        Relationships: []
+      }
+      speaking_daily: {
+        Row: {
+          challenge_date: string
+          challenge_type: string
+          completed: boolean
+          created_at: string
+          id: string
+          score: number | null
+          user_id: string
+        }
+        Insert: {
+          challenge_date?: string
+          challenge_type?: string
+          completed?: boolean
+          created_at?: string
+          id?: string
+          score?: number | null
+          user_id: string
+        }
+        Update: {
+          challenge_date?: string
+          challenge_type?: string
+          completed?: boolean
+          created_at?: string
+          id?: string
+          score?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      speaking_progress: {
+        Row: {
+          accuracy_avg: number | null
+          best_score: number | null
+          completed_at: string | null
+          confidence_avg: number | null
+          course_slug: string
+          created_at: string
+          fluency_avg: number | null
+          id: string
+          last_viewed_at: string
+          pronunciation_avg: number | null
+          sentences_completed: number
+          speaking_seconds: number
+          status: string
+          updated_at: string
+          user_id: string
+          words_spoken: number
+        }
+        Insert: {
+          accuracy_avg?: number | null
+          best_score?: number | null
+          completed_at?: string | null
+          confidence_avg?: number | null
+          course_slug: string
+          created_at?: string
+          fluency_avg?: number | null
+          id?: string
+          last_viewed_at?: string
+          pronunciation_avg?: number | null
+          sentences_completed?: number
+          speaking_seconds?: number
+          status?: string
+          updated_at?: string
+          user_id: string
+          words_spoken?: number
+        }
+        Update: {
+          accuracy_avg?: number | null
+          best_score?: number | null
+          completed_at?: string | null
+          confidence_avg?: number | null
+          course_slug?: string
+          created_at?: string
+          fluency_avg?: number | null
+          id?: string
+          last_viewed_at?: string
+          pronunciation_avg?: number | null
+          sentences_completed?: number
+          speaking_seconds?: number
+          status?: string
+          updated_at?: string
+          user_id?: string
+          words_spoken?: number
+        }
+        Relationships: []
+      }
+      speaking_records: {
+        Row: {
+          accuracy: number | null
+          confidence: number | null
+          course_slug: string
+          created_at: string
+          expected_text: string
+          id: string
+          recognized_text: string | null
+          sentence_index: number
+          session_id: string | null
+          user_id: string
+          word_results: Json
+        }
+        Insert: {
+          accuracy?: number | null
+          confidence?: number | null
+          course_slug: string
+          created_at?: string
+          expected_text: string
+          id?: string
+          recognized_text?: string | null
+          sentence_index?: number
+          session_id?: string | null
+          user_id: string
+          word_results?: Json
+        }
+        Update: {
+          accuracy?: number | null
+          confidence?: number | null
+          course_slug?: string
+          created_at?: string
+          expected_text?: string
+          id?: string
+          recognized_text?: string | null
+          sentence_index?: number
+          session_id?: string | null
+          user_id?: string
+          word_results?: Json
+        }
+        Relationships: [
+          {
+            foreignKeyName: "speaking_records_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "speaking_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      speaking_sessions: {
+        Row: {
+          accuracy: number
+          completeness: number
+          confidence: number
+          course_slug: string
+          created_at: string
+          duration_seconds: number
+          fluency: number
+          id: string
+          mode: string
+          overall_score: number
+          pronunciation: number
+          sentences_completed: number
+          user_id: string
+          words_spoken: number
+          xp_earned: number
+        }
+        Insert: {
+          accuracy?: number
+          completeness?: number
+          confidence?: number
+          course_slug: string
+          created_at?: string
+          duration_seconds?: number
+          fluency?: number
+          id?: string
+          mode?: string
+          overall_score?: number
+          pronunciation?: number
+          sentences_completed?: number
+          user_id: string
+          words_spoken?: number
+          xp_earned?: number
+        }
+        Update: {
+          accuracy?: number
+          completeness?: number
+          confidence?: number
+          course_slug?: string
+          created_at?: string
+          duration_seconds?: number
+          fluency?: number
+          id?: string
+          mode?: string
+          overall_score?: number
+          pronunciation?: number
+          sentences_completed?: number
+          user_id?: string
+          words_spoken?: number
+          xp_earned?: number
+        }
+        Relationships: []
+      }
       user_achievements: {
         Row: {
           achievement_id: string
