@@ -30,6 +30,8 @@ import { Route as AuthenticatedLessonLessonIdRouteImport } from './routes/_authe
 import { Route as AuthenticatedLabLessonIdRouteImport } from './routes/_authenticated/lab.$lessonId'
 import { Route as AuthenticatedGrammarCheckerRouteImport } from './routes/_authenticated/grammar.checker'
 import { Route as AuthenticatedGrammarLessonIdRouteImport } from './routes/_authenticated/grammar.$lessonId'
+import { Route as AuthenticatedSpeakingSessionCourseIdRouteImport } from './routes/_authenticated/speaking.session.$courseId'
+import { Route as AuthenticatedSpeakingCourseCourseIdRouteImport } from './routes/_authenticated/speaking.course.$courseId'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -147,6 +149,18 @@ const AuthenticatedGrammarLessonIdRoute =
     path: '/grammar/$lessonId',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedSpeakingSessionCourseIdRoute =
+  AuthenticatedSpeakingSessionCourseIdRouteImport.update({
+    id: '/speaking/session/$courseId',
+    path: '/speaking/session/$courseId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSpeakingCourseCourseIdRoute =
+  AuthenticatedSpeakingCourseCourseIdRouteImport.update({
+    id: '/speaking/course/$courseId',
+    path: '/speaking/course/$courseId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -169,6 +183,8 @@ export interface FileRoutesByFullPath {
   '/lab/': typeof AuthenticatedLabIndexRoute
   '/speaking/': typeof AuthenticatedSpeakingIndexRoute
   '/vocabulary/': typeof AuthenticatedVocabularyIndexRoute
+  '/speaking/course/$courseId': typeof AuthenticatedSpeakingCourseCourseIdRoute
+  '/speaking/session/$courseId': typeof AuthenticatedSpeakingSessionCourseIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -191,6 +207,8 @@ export interface FileRoutesByTo {
   '/lab': typeof AuthenticatedLabIndexRoute
   '/speaking': typeof AuthenticatedSpeakingIndexRoute
   '/vocabulary': typeof AuthenticatedVocabularyIndexRoute
+  '/speaking/course/$courseId': typeof AuthenticatedSpeakingCourseCourseIdRoute
+  '/speaking/session/$courseId': typeof AuthenticatedSpeakingSessionCourseIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -215,6 +233,8 @@ export interface FileRoutesById {
   '/_authenticated/lab/': typeof AuthenticatedLabIndexRoute
   '/_authenticated/speaking/': typeof AuthenticatedSpeakingIndexRoute
   '/_authenticated/vocabulary/': typeof AuthenticatedVocabularyIndexRoute
+  '/_authenticated/speaking/course/$courseId': typeof AuthenticatedSpeakingCourseCourseIdRoute
+  '/_authenticated/speaking/session/$courseId': typeof AuthenticatedSpeakingSessionCourseIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -239,6 +259,8 @@ export interface FileRouteTypes {
     | '/lab/'
     | '/speaking/'
     | '/vocabulary/'
+    | '/speaking/course/$courseId'
+    | '/speaking/session/$courseId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -261,6 +283,8 @@ export interface FileRouteTypes {
     | '/lab'
     | '/speaking'
     | '/vocabulary'
+    | '/speaking/course/$courseId'
+    | '/speaking/session/$courseId'
   id:
     | '__root__'
     | '/'
@@ -284,6 +308,8 @@ export interface FileRouteTypes {
     | '/_authenticated/lab/'
     | '/_authenticated/speaking/'
     | '/_authenticated/vocabulary/'
+    | '/_authenticated/speaking/course/$courseId'
+    | '/_authenticated/speaking/session/$courseId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -444,6 +470,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedGrammarLessonIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/speaking/session/$courseId': {
+      id: '/_authenticated/speaking/session/$courseId'
+      path: '/speaking/session/$courseId'
+      fullPath: '/speaking/session/$courseId'
+      preLoaderRoute: typeof AuthenticatedSpeakingSessionCourseIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/speaking/course/$courseId': {
+      id: '/_authenticated/speaking/course/$courseId'
+      path: '/speaking/course/$courseId'
+      fullPath: '/speaking/course/$courseId'
+      preLoaderRoute: typeof AuthenticatedSpeakingCourseCourseIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -463,6 +503,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedLabIndexRoute: typeof AuthenticatedLabIndexRoute
   AuthenticatedSpeakingIndexRoute: typeof AuthenticatedSpeakingIndexRoute
   AuthenticatedVocabularyIndexRoute: typeof AuthenticatedVocabularyIndexRoute
+  AuthenticatedSpeakingCourseCourseIdRoute: typeof AuthenticatedSpeakingCourseCourseIdRoute
+  AuthenticatedSpeakingSessionCourseIdRoute: typeof AuthenticatedSpeakingSessionCourseIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -482,6 +524,10 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedLabIndexRoute: AuthenticatedLabIndexRoute,
   AuthenticatedSpeakingIndexRoute: AuthenticatedSpeakingIndexRoute,
   AuthenticatedVocabularyIndexRoute: AuthenticatedVocabularyIndexRoute,
+  AuthenticatedSpeakingCourseCourseIdRoute:
+    AuthenticatedSpeakingCourseCourseIdRoute,
+  AuthenticatedSpeakingSessionCourseIdRoute:
+    AuthenticatedSpeakingSessionCourseIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

@@ -24,6 +24,7 @@ const NAV = [
   { to: "/vocabulary", label: "Vocabulary" },
   { to: "/grammar", label: "Grammar" },
   { to: "/lab", label: "Reading & Listening" },
+  { to: "/speaking", label: "Speaking" },
   { to: "/leaderboard", label: "Leaderboard" },
 ];
 

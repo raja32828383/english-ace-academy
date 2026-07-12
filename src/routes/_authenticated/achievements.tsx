@@ -6,6 +6,7 @@ import {
   Flame,
   Footprints,
   Headphones,
+  Mic,
   Star,
   Target,
   Lock,
