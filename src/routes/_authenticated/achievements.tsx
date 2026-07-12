@@ -29,6 +29,7 @@ const ICONS: Record<string, LucideIcon> = {
   star: Star,
   "book-open": BookOpen,
   headphones: Headphones,
+  mic: Mic,
   target: Target,
   award: Award,
 };
