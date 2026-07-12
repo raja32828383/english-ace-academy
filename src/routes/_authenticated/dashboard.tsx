@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   Flame,
   Headphones,
+  Mic,
   Star,
   Heart,
   Trophy,
