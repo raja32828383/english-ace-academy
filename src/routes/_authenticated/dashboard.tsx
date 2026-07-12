@@ -255,6 +255,7 @@ function Dashboard() {
           <nav aria-label="Quick actions" className="space-y-3">
             <QuickLink to="/grammar" icon={<PencilRuler className="h-5 w-5" />} title="Grammar" desc="Lessons & quizzes" />
             <QuickLink to="/lab" icon={<Headphones className="h-5 w-5" />} title="Reading & Listening" desc="Read, listen & practise" />
+            <QuickLink to="/speaking" icon={<Mic className="h-5 w-5" />} title="Speaking Lab" desc="Speak & get feedback" />
             <QuickLink to="/vocabulary/flashcards" icon={<BookMarked className="h-5 w-5" />} title="Flashcards" desc="Review vocabulary" />
             <QuickLink to="/leaderboard" icon={<Trophy className="h-5 w-5" />} title="Leaderboard" desc="See your rank" />
           </nav>
